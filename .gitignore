@@ -9,6 +9,9 @@
 *.user
 *.userosscache
 *.sln.docstates
+development.env
+Pipfile.lock
+db.sqlite3
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
