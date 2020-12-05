@@ -7,13 +7,14 @@ from Helpers.msal_helper import AuthenticationHelper
 from Helpers.requests_helper import RequestsHelper
 import os, json
 
-# Create your views here.
-@method_decorator(login_required, name='dispatch')
 class SubscriptionsView(View):
 
     def get(self, request):
 
-        accounts = AuthenticationHelper.get_confidential_client().get_accounts(username=request.user.username)
+        if request.session.get("user_name", None) is None:
+            return HttpResponseRedirect(reverse("login"))
+
+        accounts = AuthenticationHelper.get_confidential_client().get_accounts(username=request.session["user_name"])
 
         if len(accounts) == 0:
             return HttpResponseRedirect(reverse("login"))
