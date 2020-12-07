@@ -43,7 +43,8 @@ or download and extract the repository .zip file.
 Follow the [Register the application and service in Azure AD](https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/active-directory/azuread-dev/v1-oauth2-on-behalf-of-flow.md#register-the-application-and-service-in-azure-ad) section in the Azure Docs to create and configure app registrations in Azure Active Directory for the UI and API applications.
 
 * Ensure the property [accessTokenAcceptedVersion](https://docs.microsoft.com/en-us/azure/active-directory/develop/reference-app-manifest?WT.mc_id=Portal-Microsoft_AAD_RegisteredApps#accesstokenacceptedversion-attribute) has been updated, in both app registration manifests, to have a value of **2**.
-* Ensure the scope **user_impersonation** for the **Azure Management API**, under the API Permissions blade, has been added to the API app registration. 
+* Ensure the scope **openid** for the Microsoft Graph API, under the API Permissions blade, has been added to the UI app registration. 
+* Ensure the scope **user_impersonation** for the Azure Management API, under the API Permissions blade, has been added to the API app registration.  
 
 >NOTE! Only use the [Register the application and service in Azure AD](https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/active-directory/azuread-dev/v1-oauth2-on-behalf-of-flow.md#register-the-application-and-service-in-azure-ad) section for configuring the required app registrations in Azure Active Directory from step 1. For examples and further reference, please use the [Microsoft Identity platform](https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/active-directory/develop/v2-oauth2-on-behalf-of-flow.md) documentation instead.
 
