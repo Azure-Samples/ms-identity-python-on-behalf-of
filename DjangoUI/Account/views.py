@@ -26,20 +26,21 @@ class LoginView(View):
 
     def get(self, request):
 
-        request.session['auth_state'] = secrets.token_urlsafe(32)
-        request.session['nonce'] = secrets.token_urlsafe(32)
-
         #generating sign in url to initate the user's sign in with AAD 
-        sign_in_url = AuthenticationHelper.get_confidential_client().get_authorization_request_url(
+        #using the initiate_auth_code_flow method ensures PKCE protection is used
+        auth_code_response = AuthenticationHelper.get_confidential_client().initiate_auth_code_flow(
             scopes=[os.environ.get("SCOPE")],
-            state=request.session['auth_state'],
-            redirect_uri=os.environ.get("REDIRECT_URI"),
-            nonce=request.session['nonce']
+            redirect_uri=os.environ.get("REDIRECT_URI")
         )
 
-        return HttpResponseRedirect(sign_in_url)
+        if "error" in auth_code_response:
+            return HttpResponse("An Error Occured:" + auth_code_response.get("error") + " " +  auth_code_response.get("error_description"), status=404)
 
+        request.session["auth_code_response"] = auth_code_response
 
+        return HttpResponseRedirect(auth_code_response["auth_uri"])
+
+ 
 class LogOutView(View):
 
     """
@@ -62,7 +63,7 @@ class LogOutView(View):
         if len(accounts) != 0:
             #remove the user's account from the token cache
             AuthenticationHelper.get_confidential_client().remove_account(account=accounts[0])
-               
+
         #remove the user's session from the Django managed database
         request.session.flush()
 
@@ -89,20 +90,22 @@ class CallbackView(View):
     """
 
     def get(self, request):
-        expected_state = request.session.get("auth_state", None)
-
-        if request.GET.get('state') != expected_state:
-            return HttpResponse("State obtained from callback was not the same as state passed in from the authorization url",status=404)
 
         if "error" in request.GET: 
             return HttpResponse("An Error Occured:" + request.GET.get("error") + " " +  request.GET.get("error_description"), status=403)
 
-        token_response = AuthenticationHelper.get_confidential_client().acquire_token_by_authorization_code(
-            code=request.GET.get('code'),
-            scopes=[os.environ.get("SCOPE")],
-            redirect_uri=os.environ.get("REDIRECT_URI"),
-            nonce=request.session.get('nonce', None)
-        )
+        try:
+            #using the acquire_token_by_auth_code_flow method ensures PKCE protection is verified
+            token_response = AuthenticationHelper.get_confidential_client().acquire_token_by_auth_code_flow(
+                auth_code_flow=request.session.get('auth_code_response', {}),
+                auth_response=request.GET,
+                scopes=[os.environ.get("SCOPE")],
+            )
+        except ValueError as exc:
+            #only occurs when client data, either auth_code_response or SCOPE in this case, is missing or malformed
+            return HttpResponse("An Error Occured: " + str(exc), status=404)
+
+        
 
         if "error" in token_response:
             return HttpResponse("An Error Occured:" + token_response.get("error") + " " +  token_response.get("error_description"), status=404)
@@ -111,9 +114,8 @@ class CallbackView(View):
         #when managing user sign in via sessions, ensure to set the SESSION_COOKIE_AGE setting to a low number of seconds
         request.session["user_name"] = token_response['id_token_claims']['preferred_username']
 
-        #remove used auth_state and nonce values from request session
-        del request.session['auth_state']
-        del request.session['nonce']
+        #remove used auth_code_response values from request session
+        del request.session['auth_code_response']
         request.session.modified = True
 
         return HttpResponseRedirect(reverse("azure_management_home"))
