@@ -20,7 +20,7 @@ class SubscriptionsView(View):
             return HttpResponseRedirect(reverse("login"))
 
         token_response = AuthenticationHelper.get_confidential_client().acquire_token_silent(
-            scopes=[os.environ.get("SCOPE")],
+            scopes=[os.environ.get("API_SCOPE")],
             account=accounts[0],
             authority=os.environ.get("AUTHORITY")
         )

@@ -96,6 +96,7 @@ class CallbackView(View):
 
         try:
             #using the acquire_token_by_auth_code_flow method ensures PKCE protection is verified
+			#NOTE) This token acquisition uses the same set of scopes from the initial request made to initiate_auth_code_flow above
             token_response = AuthenticationHelper.get_confidential_client().acquire_token_by_auth_code_flow(
                 auth_code_flow=request.session.get('auth_code_response', {}),
                 auth_response=request.GET,
