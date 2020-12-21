@@ -1,0 +1,13 @@
+{"Registrations":[ 
+    {
+      "component": { 
+       "type": "git", 
+       "git": { 
+         "repositoryUrl": "https://github.com/Azure-Samples/ms-identity-python-webapi-azurefunctions/blob/master/Function/secureFlaskApp/__init__.py", 
+         "commitHash": "f88a9466bb0ec0ce20c6742a21bc47a16e13652e" 
+         }
+       }
+    }
+ ],
+ "Version": 1
+}
