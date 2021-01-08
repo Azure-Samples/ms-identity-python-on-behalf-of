@@ -1,0 +1,98 @@
+{
+    "Sample": {
+      "Title": "A Python Flask web API secured by Azure AD and calling Azure Management API on behalf of a user",
+      "Level": 300,
+      "Client": "Python Django web app",
+      "Service": "Python Flask web API",
+      "RepositoryUrl": "https://github.com/Azure-Samples/ms-identity-python-on-behalf-of",
+      "Endpoint": "AAD v2.0"
+    },
+    "AADApps": [
+      {
+        "Id": "service",
+        "Name": "Python Flask web API",
+        "Kind": "WebApi",
+        "HomePage": "https://127.0.0.1:8000:5000/",
+        "Audience": "AzureADMyOrg",
+        "PasswordCredentials": "Auto",
+        "RequiredResourcesAccess": [
+            {
+              "Resource": "Microsoft Graph",
+              "DelegatedPermissions": [ "User.Read" ]
+            },
+            {
+              "Resource": "Windows Azure Service Management API",
+              "DelegatedPermissions": [ "user_impersonation" ]
+            }
+          ],
+          "ManualSteps": [
+            {
+              "Comment": "Navigate to the Manifest and set 'accessTokenAcceptedVersion' to '2' instead of 'null'"
+            }
+          ]
+      },
+      {
+        "Id": "client",
+        "Name": "Python Django web app",
+        "Kind" :  "WebApp",
+        "Audience": "AzureADMyOrg",
+        "HomePage": "https://127.0.0.1:8000/",
+        "ReplyUrls":"https://127.0.0.1:8000/account/callback",
+        "PasswordCredentials": "Auto",
+        "RequiredResourcesAccess": [
+          {
+            "Resource": "service",
+            "DelegatedPermissions": [ "Subscriptions.Read" ]
+          }
+        ]
+      }
+    ],
+    "CodeConfiguration": [
+      {
+        "App": "client",
+        "SettingKind": "Replace",
+        "SettingFile": "\\..\\DjangoUI\\production.env",
+        "Mappings": [
+          {
+            "key": "UIAppRegistrationClientID",
+            "value": ".AppId"
+          },
+          {
+              "key": "UIAppRegistrationClientSecret",
+              "value": ".AppKey"
+          },
+          {
+            "key": "ReplaceWithTenantID",
+            "value": "$tenantId"
+          },
+          {
+            "key": "https://flaskapi",
+            "value": "service.AppId"
+          },
+          {
+              "key": "api://flaskapi",
+              "value": "service.AppId"
+          }
+        ]
+      },
+      {
+        "App": "service",
+        "SettingKind": "Replace",
+        "SettingFile": "\\..\\FlaskAPI\\production.env",
+        "Mappings": [
+          {
+            "key": "APIAppRegistrationClientID",
+            "value": ".AppId"
+          },
+          {
+            "key": "ReplaceWithTenantID",
+            "value": "$tenantId"
+          },
+          {
+            "key": "APIAppRegistrationClientSecret",
+            "value": ".AppKey"
+          }
+        ]
+      }
+    ]
+  }
