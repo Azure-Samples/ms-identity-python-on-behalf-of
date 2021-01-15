@@ -1,4 +1,4 @@
-from .views import LoginView, LogOutView, CallbackView 
+from .views import LoginView, LogOutView, CallbackView
 from django.urls import path
 
 urlpatterns = [

@@ -38,8 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Account.apps.AccountConfig',
-    'AzureManagement.apps.AzuremanagementConfig',
-    'sslserver'
+    'AzureManagement.apps.AzuremanagementConfig'
 ]
 
 
@@ -125,10 +124,11 @@ STATIC_URL = '/static/'
 
 
 SESSION_COOKIE_AGE= 3600
-SESSION_COOKIE_SECURE = True
 
 CSRF_COOKIE_SAMESITE= "Strict"
-CSRF_COOKIE_SECURE= True
+
+# Should be set to True for production settings
+CSRF_COOKIE_SECURE= False
 
 LOGIN_URL=os.environ.get("LOGIN_URL")
 
