@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -132,3 +132,4 @@ CSRF_COOKIE_SECURE= False
 
 LOGIN_URL=os.environ.get("LOGIN_URL")
 
+SESSION_SAVE_EVERY_REQUEST=True
