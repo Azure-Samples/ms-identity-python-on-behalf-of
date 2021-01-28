@@ -8,7 +8,7 @@ name: Enable your Python Flask API to call the Azure Management API on a user's 
 urlFragment: ms-identity-python-on-behalf-of
 description: "This sample demonstrates a Python Django Web App calling a Python Flask Web API that is secured using Azure AD"
 ---
-# Enable your Python Flask API to call the Azure Management API on a user's behalf from your Python Django Web App with the Microsoft Identity Platform.
+# Enable your Python Flask API to call the Azure Management API on a user's behalf from your Python Django Web App with the Microsoft Identity Platform
 
  1. [Overview](#overview)
  1. [Scenario](#scenario)
@@ -23,7 +23,6 @@ description: "This sample demonstrates a Python Django Web App calling a Python 
  1. [More information](#more-information)
  1. [Community Help and Support](#community-help-and-support)
  1. [Contributing](#contributing)
-
 
 ## Overview
 
@@ -40,20 +39,20 @@ This sample demonstrates a Python Django Web App calling a Python Flask Web API 
 
 | File/folder       | Description                                |
 |-------------------|--------------------------------------------|
-|`AppCreationScripts/`| Scripts to automatically configure Azure AD app registrations.|
+| `AppCreationScripts/`| Scripts to automatically configure Azure AD app registrations.|
 | `CHANGELOG.md`    | List of changes to the sample.             |
 | `CONTRIBUTING.md` | Guidelines for contributing to the sample. |
 | `LICENSE`         | The license for the sample.                |
 
 ## Prerequisites
 
-
 - [Python 3.8](https://www.python.org/downloads/)
-- A virtual environment for each application to to work from
+- A virtual environment for each application to to work from.
 - If using VS Code, select the [Python interpreter](https://code.visualstudio.com/docs/languages/python) from the virtual environment
 - An Azure Active Directory (Azure AD) tenant. For more information on how to get an Azure AD tenant, see [How to get an Azure AD tenant](https://azure.microsoft.com/documentation/articles/active-directory-howto-tenant/)
 - A user account in your own Azure AD tenant. This sample will not work with a **personal Microsoft account**. If have not yet [created a user account](https://docs.microsoft.com/azure/active-directory/fundamentals/add-users-azure-active-directory) in your AD tenant yet, you should do so before proceeding.
-> - Configure [VS Code](https://code.visualstudio.com/docs/python/python-tutorial) for debugging Python applications
+  
+> - Configure [VS Code](https://code.visualstudio.com/docs/python/python-tutorial) for debugging Python applications.
 
 ## Setup
 
@@ -70,23 +69,25 @@ or download and extract the repository .zip file.
 > :warning: To avoid path length limitations on Windows, we recommend cloning into a directory near the root of your drive.
 
 ### Step 2: Install project dependencies
+
 1. Navigate to the project folders
-2. Activate your Python 3 virtual environment (either directly in the command line or VS Code)
-3. You will need to install dependencies using pip
+1. Activate your Python 3 virtual environment (either directly in the command line or VS Code)
+1. You will need to install dependencies using pip
+   1. The below shell commands must be executed in both applications as they both have seperate requirements.txt files  
+   1. There is also Pipfile included in both applications if you prefer to use pipenv instead
 
-    * The below shell commands must be executed in both applications as they both have seperate requirements.txt files  
-    * There is also Pipfile included in both applications if you prefer to use pipenv instead
+For the Flask API application, use the following command:
 
-
-For the Flask API application, use the following command: 
 ```Shell
 $ pip install -r requirements.txt
 ```
 
-For the Django UI application, local execution only, use the following command: 
+For the Django UI application, local execution only, use the following command:
+
 ```Shell
-$ pip install -r dev-requirements.txt
+$ pip install -r dev -requirements.txt
 ```
+
 ### Register the sample application(s) with your Azure Active Directory tenant
 
 There are two projects in this sample. Each needs to be separately registered in your Azure AD tenant. To register these projects, you can:
@@ -232,8 +233,7 @@ This binding merges the permissions required by both the client and the middle t
 To achieve this, you need to add the **Application Id** of the client app, in the Manifest of the Web API in the `knownClientApplications` property. Here's how:
 
 1. In the [Azure portal](https://portal.azure.com), navigate to your `Python Flask Web API` app registration, and select **Manifest** section.
-1. In the manifest editor, change the `"knownClientApplications": []` line so that the array contains 
-   the Client ID of the client application (`Python Django Web App`) as an element of the array.
+1. In the manifest editor, change the `"knownClientApplications": []` line so that the array contains the Client ID of the client application (`Python Django Web App`) as an element of the array.
 
     For instance:
 
@@ -270,10 +270,7 @@ To achieve this, you need to add the **Application Id** of the client app, in th
    2. Run the **Python: Django: Run Migrations** launch configuration
    3. Run the **Python: Django** launch configuration
 
-
 - Navigate to [http://localhost:8000](http://localhost:8000) in your browser (**Don't use** use 127.0.0.1)
-
-## Explore the sample
 
 ## Explore the sample
 
