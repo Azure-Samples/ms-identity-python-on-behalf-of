@@ -245,12 +245,48 @@ To achieve this, you need to add the **Application Id** of the client app, in th
 
 ## Running the sample
 
-- To run the sample, you can either use the command line or VS Code. For command line use, navigate to the root of the project. Be sure your virtual environment with dependencies is activated ([Prerequisites](#prerequisites)).
+There are two applications in this repository. You must run both of them.
+
+
+### FlaskAPI
+
+To run the FlaskAPI application, you can either use the command line or VS Code. For command line use, navigate to `<project-root>/FlaskAPI` folder. Be sure your virtual environment with dependencies is activated ([Prerequisites](#prerequisites)).
+
 - On Linux/OSX via the terminal:
 
   ```Shell
     # start from the folder in which the sample is cloned into
-    python manage.py collectstatic
+    cd FlaskAPI
+    export FLASK_ENV="development"
+    export FLASK_APP="main.py"
+    flask run
+  ```
+
+- On Windows:
+
+  ```PowerShell
+    # start from the folder in which the sample is cloned into
+    cd FlaskAPI
+    $env:FLASK_ENV="development"
+    $env:FLASK_APP="main.py"
+    flask run
+  ```
+
+  - On VS Code:
+
+   1. Open VS Code in the Django UI project folder
+   2. Run the **Python: Flask** launch configuration
+
+### DjangoUI
+
+To run the DjangoUI application, you can either use the command line or VS Code. For command line use, navigate to `<project-root>/DjangoUI` folder. Be sure your virtual environment with dependencies is activated ([Prerequisites](#prerequisites)).
+
+- On Linux/OSX via the terminal:
+
+  ```Shell
+    # start from the folder in which the sample is cloned into
+    cd DjangoUI
+    export ENVIRONMENT="development"
     python manage.py migrate
     python manage.py runserver localhost:8000
   ```
@@ -259,7 +295,8 @@ To achieve this, you need to add the **Application Id** of the client app, in th
 
   ```PowerShell
     # start from the folder in which the sample is cloned into
-    python manage.py collectstatic
+    cd DjangoUI
+    $env:ENVIRONMENT="development"
     python manage.py migrate
     python manage.py runserver localhost:8000
   ```
@@ -270,9 +307,9 @@ To achieve this, you need to add the **Application Id** of the client app, in th
    2. Run the **Python: Django: Run Migrations** launch configuration
    3. Run the **Python: Django** launch configuration
 
-- Navigate to [http://localhost:8000](http://localhost:8000) in your browser (**Don't use** use 127.0.0.1)
+### Launch the App
 
-## Explore the sample
+Navigate to [http://localhost:8000](http://localhost:8000) in your browser (**Don't use** use 127.0.0.1)
 
 - After starting the application, Follow the instructions on the next page to sign in with an account in the Azure AD tenant.
 - On the consent screen, note the scopes that are being requested.
@@ -299,7 +336,6 @@ This sample uses the [Microsoft Authentication Library \(MSAL\) for Python](http
 - [Application and service principal objects in Azure Active Directory](https://docs.microsoft.com/azure/active-directory/develop/app-objects-and-service-principals)
 - [National Clouds](https://docs.microsoft.com/azure/active-directory/develop/authentication-national-cloud#app-registration-endpoints)
 - [MSAL code samples](https://docs.microsoft.com/azure/active-directory/develop/sample-v2-code)
- 
 
 For more information about how OAuth 2.0 protocols work in this scenario and other scenarios, see [Authentication Scenarios for Azure AD](https://docs.microsoft.com/azure/active-directory/develop/authentication-flows-app-scenarios).
 
