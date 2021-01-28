@@ -313,8 +313,6 @@ Navigate to [http://localhost:8000](http://localhost:8000) in your browser (**Do
 
 ## Explore the sample
 
-## Explore the sample
-
 - After starting the application, Follow the instructions on the next page to sign in with an account in the Azure AD tenant.
 - On the consent screen, note the scopes that are being requested.
 - Note the screen should now display a JSON based array of all Azure subscriptions you have access to
@@ -340,7 +338,6 @@ This sample uses the [Microsoft Authentication Library \(MSAL\) for Python](http
 - [Application and service principal objects in Azure Active Directory](https://docs.microsoft.com/azure/active-directory/develop/app-objects-and-service-principals)
 - [National Clouds](https://docs.microsoft.com/azure/active-directory/develop/authentication-national-cloud#app-registration-endpoints)
 - [MSAL code samples](https://docs.microsoft.com/azure/active-directory/develop/sample-v2-code)
- 
 
 For more information about how OAuth 2.0 protocols work in this scenario and other scenarios, see [Authentication Scenarios for Azure AD](https://docs.microsoft.com/azure/active-directory/develop/authentication-flows-app-scenarios).
 
