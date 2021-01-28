@@ -250,17 +250,43 @@ There are two applications in this repository. You must run both of them.
 
 ### FlaskAPI
 
-### DjangoUI 
+To run the FlaskAPI application, you can either use the command line or VS Code. For command line use, navigate to `<project-root>/FlaskAPI` folder. Be sure your virtual environment with dependencies is activated ([Prerequisites](#prerequisites)).
 
-To run the sample, you can either use the command line or VS Code. For command line use, navigate to the root of the project. Be sure your virtual environment with dependencies is activated ([Prerequisites](#prerequisites)).
+- On Linux/OSX via the terminal:
+
+  ```Shell
+    # start from the folder in which the sample is cloned into
+    cd FlaskAPI
+    export FLASK_ENV="development"
+    export FLASK_APP="main.py"
+    flask run
+  ```
+
+- On Windows:
+
+  ```PowerShell
+    # start from the folder in which the sample is cloned into
+    cd FlaskAPI
+    $env:FLASK_ENV="development"
+    $env:FLASK_APP="main.py"
+    flask run
+  ```
+
+  - On VS Code:
+
+   1. Open VS Code in the Django UI project folder
+   2. Run the **Python: Flask** launch configuration
+
+### DjangoUI
+
+To run the DjangoUI application, you can either use the command line or VS Code. For command line use, navigate to `<project-root>/DjangoUI` folder. Be sure your virtual environment with dependencies is activated ([Prerequisites](#prerequisites)).
 
 - On Linux/OSX via the terminal:
 
   ```Shell
     # start from the folder in which the sample is cloned into
     cd DjangoUI
-    export environment="development"
-    python manage.py collectstatic
+    export ENVIRONMENT="development"
     python manage.py migrate
     python manage.py runserver localhost:8000
   ```
@@ -270,8 +296,7 @@ To run the sample, you can either use the command line or VS Code. For command l
   ```PowerShell
     # start from the folder in which the sample is cloned into
     cd DjangoUI
-    $env:environment="development"
-    python manage.py collectstatic
+    $env:ENVIRONMENT="development"
     python manage.py migrate
     python manage.py runserver localhost:8000
   ```
@@ -282,7 +307,9 @@ To run the sample, you can either use the command line or VS Code. For command l
    2. Run the **Python: Django: Run Migrations** launch configuration
    3. Run the **Python: Django** launch configuration
 
-- Navigate to [http://localhost:8000](http://localhost:8000) in your browser (**Don't use** use 127.0.0.1)
+### Launch the App
+
+Navigate to [http://localhost:8000](http://localhost:8000) in your browser (**Don't use** use 127.0.0.1)
 
 ## Explore the sample
 
