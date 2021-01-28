@@ -70,23 +70,27 @@ or download and extract the repository .zip file.
 > :warning: To avoid path length limitations on Windows, we recommend cloning into a directory near the root of your drive.
 
 ### Step 2: Install project dependencies
+
 1. Navigate to the project folders
 2. Activate your Python 3 virtual environment (either directly in the command line or VS Code)
 3. You will need to install dependencies using pip
 
-    * The below shell commands must be executed in both applications as they both have seperate requirements.txt files  
-    * There is also Pipfile included in both applications if you prefer to use pipenv instead
+- The below shell commands must be executed in both applications as they both have seperate requirements.txt files  
+- There is also Pipfile included in both applications if you prefer to use pipenv instead
 
 
-For the Flask API application, use the following command: 
-```Shell
-$ pip install -r requirements.txt
-```
+For the Flask API application, use the following command:
+
+   ```Shell
+   pip install -r requirements.txt
+   ```
 
 For the Django UI application, local execution only, use the following command: 
+
 ```Shell
-$ pip install -r dev-requirements.txt
+pip install -r requirements.txt
 ```
+
 ### Register the sample application(s) with your Azure Active Directory tenant
 
 There are two projects in this sample. Each needs to be separately registered in your Azure AD tenant. To register these projects, you can:
@@ -246,7 +250,6 @@ To achieve this, you need to add the **Application Id** of the client app, in th
 ## Running the sample
 
 There are two applications in this repository. You must run both of them.
-
 
 ### FlaskAPI
 
