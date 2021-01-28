@@ -245,11 +245,21 @@ To achieve this, you need to add the **Application Id** of the client app, in th
 
 ## Running the sample
 
-- To run the sample, you can either use the command line or VS Code. For command line use, navigate to the root of the project. Be sure your virtual environment with dependencies is activated ([Prerequisites](#prerequisites)).
+There are two applications in this repository. You must run both of them.
+
+
+### FlaskAPI
+
+### DjangoUI 
+
+To run the sample, you can either use the command line or VS Code. For command line use, navigate to the root of the project. Be sure your virtual environment with dependencies is activated ([Prerequisites](#prerequisites)).
+
 - On Linux/OSX via the terminal:
 
   ```Shell
     # start from the folder in which the sample is cloned into
+    cd DjangoUI
+    export environment="development"
     python manage.py collectstatic
     python manage.py migrate
     python manage.py runserver localhost:8000
@@ -259,6 +269,8 @@ To achieve this, you need to add the **Application Id** of the client app, in th
 
   ```PowerShell
     # start from the folder in which the sample is cloned into
+    cd DjangoUI
+    $env:environment="development"
     python manage.py collectstatic
     python manage.py migrate
     python manage.py runserver localhost:8000
@@ -269,7 +281,6 @@ To achieve this, you need to add the **Application Id** of the client app, in th
    1. Open VS Code in the Django UI project folder
    2. Run the **Python: Django: Run Migrations** launch configuration
    3. Run the **Python: Django** launch configuration
-
 
 - Navigate to [http://localhost:8000](http://localhost:8000) in your browser (**Don't use** use 127.0.0.1)
 
