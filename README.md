@@ -30,7 +30,7 @@ This sample demonstrates a Python Django Web App calling a Python Flask Web API 
 
 ## Scenario
 
-1. The client Python Django Web App uses the Microsoft Authentication Library (MSAL) to sign-in and obtain a JWT access token from **Azure AD**.
+1. The client Python Django Web App uses the Microsoft Authentication Library (MSAL) to sign-in and obtain a JWT Access Token from **Azure AD**.
 2. The access token is used as a bearer token to authorize the user to call the Python Flask Web API protected **Azure AD**.
 
 ![Overview](./ReadmeFiles/topology.png)
@@ -47,12 +47,12 @@ This sample demonstrates a Python Django Web App calling a Python Flask Web API 
 ## Prerequisites
 
 - [Python 3.8](https://www.python.org/downloads/)
-- A virtual environment for each application to to work from.
+- A [virtual environment](https://docs.python.org/3/tutorial/venv.html) for each application to to work from
 - If using VS Code, select the [Python interpreter](https://code.visualstudio.com/docs/languages/python) from the virtual environment
 - An Azure Active Directory (Azure AD) tenant. For more information on how to get an Azure AD tenant, see [How to get an Azure AD tenant](https://azure.microsoft.com/documentation/articles/active-directory-howto-tenant/)
-- A user account in your own Azure AD tenant. This sample will not work with a **personal Microsoft account**. If have not yet [created a user account](https://docs.microsoft.com/azure/active-directory/fundamentals/add-users-azure-active-directory) in your AD tenant yet, you should do so before proceeding.
+- A user account in your own Azure AD tenant. This sample will not work with a **personal Microsoft account**. If have not yet [created a user account](https://docs.microsoft.com/azure/active-directory/fundamentals/add-users-azure-active-directory) in your AD tenant yet, you should do so before proceeding
   
-> - Configure [VS Code](https://code.visualstudio.com/docs/python/python-tutorial) for debugging Python applications.
+> - Configure [VS Code](https://code.visualstudio.com/docs/python/python-tutorial) for debugging Python applications
 
 ## Setup
 
@@ -70,13 +70,14 @@ or download and extract the repository .zip file.
 
 ### Step 2: Install project dependencies
 
-1. Navigate to the project folders
-1. Activate your Python 3 virtual environment (either directly in the command line or VS Code)
+1. Navigate to the folder where you cloned this project
+1. If using VS Code, open each sub-folder, 'DjangoUI' and 'FlaskAPI', in seperate instances 
+1. Activate your Python 3 virtual environment (either directly in the [command line](https://docs.python.org/3/tutorial/venv.html#creating-virtual-environments) or [VS Code](https://code.visualstudio.com/docs/languages/python))
 1. You will need to install dependencies using pip
    1. The below shell commands must be executed in both applications as they both have separate requirements.txt files  
-   1. There is also Pipfile included in both applications if you prefer to use pipenv instead
+   1. There is also Pipfile included in both applications if you prefer to use [pipenv](https://pypi.org/project/pipenv/) instead
 
-For the Flask API application, use the following command:
+In the 'FlaskAPI' sub-folder, use the following command:
 
    ```Shell
    # start from the directory in which this sample is clone into
@@ -84,7 +85,7 @@ For the Flask API application, use the following command:
    pip install -r requirements.txt
    ```
 
-For the Django UI application, local execution only, use the following command:
+For the 'DjangoUI' sub-folder, local execution only, use the following command:
 
 ```Shell
 # start from the directory in which this sample is clone into
@@ -177,6 +178,7 @@ Open the project in your IDE (like Visual Studio or Visual Studio Code) to confi
 
 > In the steps below, "ClientID" is the same as "Application ID" or "AppId".
 
+1. In the 'FlaskAPI' sub-folder, copy the file named `production.env` and rename it to `development.env`.
 1. Open the `FlaskAPI\development.env` file.
 1. Find the key `CLIENT_ID` and replace the existing value with the application ID (clientId) of `Python Flask Web API` app copied from the Azure portal.
 1. Find the key `CLIENT_SECRET` and replace the existing value with the key you saved during the creation of `Python Flask Web API` copied from the Azure portal.
@@ -220,6 +222,7 @@ Open the project in your IDE (like Visual Studio or Visual Studio Code) to confi
 
 > In the steps below, "ClientID" is the same as "Application ID" or "AppId".
 
+1. In the 'DjangoUI' sub-folder, copy the file named `production.env` and rename it to `development.env`.
 1. Open the `DjangoUI\development.env` file.
 1. Find the key `CLIENT_ID` and replace the existing value with the application ID (clientId) of `Python Django Web App` app copied from the Azure portal.
 1. Find the key `CLIENT_SECRET` and replace the existing value with the key you saved during the creation of `Python Django Web App` copied from the Azure portal.

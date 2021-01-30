@@ -41,7 +41,7 @@
             "DelegatedPermissions": [ "Subscriptions.Read" ]
           },
           {
-            "Resource": "Microsoft Graph API",
+            "Resource": "Microsoft Graph",
             "DelegatedPermissions": [ "openid" ]
           }
         ],
