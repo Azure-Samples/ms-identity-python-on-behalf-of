@@ -176,6 +176,7 @@ The first thing that we need to do is to declare the unique [resource](https://d
         - For **User consent description** type `Allow the application to access Python Flask Web API on your behalf.`
         - Keep **State** as **Enabled**.
         - Select the **Add scope** button on the bottom to save this scope.
+1. In the **Manifest** section, make sure to change the value fore *acceptedTokenVersion* to **2**.
 
 #### Configure the service app (Python Flask Web API) to use your app registration
 
@@ -220,6 +221,7 @@ Open the project in your IDE (like Visual Studio or Visual Studio Code) to confi
    - In the list of APIs, select the API `Microsoft Graph API`.
    - In the **Delegated permissions** section, select the **openid** in the list. Use the search box if necessary.
    - Select the **Add permissions** button at the bottom.
+1. In the **Manifest** section, make sure to change the value fore *acceptedTokenVersion* to **2**.
 
 #### Configure the client app (Python Django Web App) to use your app registration
 
