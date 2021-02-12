@@ -82,16 +82,21 @@ In the 'FlaskAPI' sub-folder, use the following command:
    ```Shell
    # start from the directory in which this sample is clone into
    cd FlaskAPI
+   python3 -m venv venv # only required if you don't have a venv already
+   source venv/bin/activate
    pip install -r requirements.txt
    ```
 
-For the 'DjangoUI' sub-folder, local execution only, use the following command:
+In the 'DjangoUI' sub-folder, local execution only, use the following command:
 
-```Shell
-# start from the directory in which this sample is clone into
-cd DjangoUI
-pip install -r requirements.txt
-```
+  ```Shell
+  # start from the directory in which this sample is clone into
+  cd DjangoUI
+  python3 -m venv venv # only required if you don't have a venv already
+  Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process -Force
+  . .\venv\Scripts\Activate.ps1
+  pip install -r requirements.txt
+  ```
 
 ### Register the sample application(s) with your Azure Active Directory tenant
 
