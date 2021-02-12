@@ -82,16 +82,21 @@ In the 'FlaskAPI' sub-folder, use the following command:
    ```Shell
    # start from the directory in which this sample is clone into
    cd FlaskAPI
+   python3 -m venv venv # only required if you don't have a venv already
+   source venv/bin/activate
    pip install -r requirements.txt
    ```
 
-For the 'DjangoUI' sub-folder, local execution only, use the following command:
+In the 'DjangoUI' sub-folder, local execution only, use the following command:
 
-```Shell
-# start from the directory in which this sample is clone into
-cd DjangoUI
-pip install -r requirements.txt
-```
+  ```Shell
+  # start from the directory in which this sample is clone into
+  cd DjangoUI
+  python3 -m venv venv # only required if you don't have a venv already
+  Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process -Force
+  . .\venv\Scripts\Activate.ps1
+  pip install -r requirements.txt
+  ```
 
 ### Register the sample application(s) with your Azure Active Directory tenant
 
@@ -154,7 +159,7 @@ As a first step you'll need to:
 1. In the app's registration screen, select the **API permissions** blade in the left to open the page where we add access to the APIs that your application needs.
    - Select the **Add a permission** button and then,
    - Ensure that the **Microsoft APIs** tab is selected.
-   - In the list of APIs, select the API `Windows Azure Service Management API`.
+   - In the list of APIs, select the API `Azure Service Management`.
    - In the **Delegated permissions** section, select the **user_impersonation** in the list. Use the search box if necessary.
    - Select the **Add permissions** button at the bottom.
 1. In the app's registration screen, select the **Expose an API** blade to the left to open the page where you can declare the parameters to expose this app as an API for which client applications can obtain [access tokens](https://docs.microsoft.com/azure/active-directory/develop/access-tokens) for.
