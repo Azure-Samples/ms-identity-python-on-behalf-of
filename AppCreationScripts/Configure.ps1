@@ -366,7 +366,7 @@ Function ConfigureApplications
    # Update config file for 'client'
    $configFile = $pwd.Path + "\..\DjangoUI\production.env"
    Write-Host "Updating the sample code ($configFile)"
-   $dictionary = @{ "UIAppRegistrationClientID" = $clientAadApplication.AppId;"UIAppRegistrationClientSecret" = $clientAppKey;"ReplaceWithTenantID" = $tenantId;"enter_flaskapi" = $serviceAadApplication.AppId;"enter_scope_flaskapi" = ("api://"+$serviceAadApplication.AppId+"/Subscriptions.Read") };
+   $dictionary = @{ "UIAppRegistrationClientID" = $clientAadApplication.AppId;"UIAppRegistrationClientSecret" = $clientAppKey;"ReplaceWithTenantID" = $tenantId;"Flask_API_Client_ID" = $serviceAadApplication.AppId; };
    ReplaceInTextFile -configFilePath $configFile -dictionary $dictionary
 
    # Update config file for 'service'
