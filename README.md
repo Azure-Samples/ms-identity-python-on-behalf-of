@@ -285,10 +285,11 @@ To run the FlaskAPI application, you can either use the command line or VS Code.
     flask run
   ```
 
-  - On VS Code:
+- On VS Code:
 
-   1. Open VS Code in the FlaskAPI project folder
-   2. Run the **Python: Flask** launch configuration
+ 1. Open VS Code in the FlaskAPI project folder
+ 2. Open the command palette (ctrl+shift+P) and select `Python: Select Interpreter` and choose the virtual environment that you installed the project into.
+ 3. Run the **Python: Flask** launch configuration
 
 ### DjangoUI
 
@@ -314,11 +315,12 @@ To run the DjangoUI application, you can either use the command line or VS Code.
     python manage.py runserver localhost:8000
   ```
 
-  - On VS Code:
+- On VS Code:
 
-   1. Open VS Code in the DjangoUI project folder
-   2. Run the **Python: Django: Run Migrations** launch configuration
-   3. Run the **Python: Django** launch configuration
+ 1. Open VS Code in the DjangoUI project folder
+ 2. Open the command palette (ctrl+shift+P) and select `Python: Select Interpreter` and choose the virtual environment that you installed the project into.
+ 3. Run the **Python: Django: Run Migrations** launch configuration
+ 4. Run the **Python: Django** launch configuration
 
 ### Open your browser
 

@@ -60,11 +60,11 @@
         "Mappings": [
           {
             "key": "CLIENT_ID",
-            "value": ".AppId"
+            "value": "client.AppId"
           },
           {
               "key": "CLIENT_SECRET",
-              "value": ".AppKey"
+              "value": "client.AppKey"
           },
           {
             "key":"DJANGO_SECRET_KEY",
@@ -75,12 +75,8 @@
             "value": "https://login.microsoftonline.com/$tenantId"
           },
           {
-            "key": "SCOPE",
-            "value": "https://flaskapi/.default"
-          },
-          {
-              "key": "API_SCOPE",
-              "value": "api://flaskapi/Subscriptions.Read"
+            "key": "Flask_API_Client_ID",
+            "value": "service.AppId"
           }
         ]
       },
@@ -99,7 +95,7 @@
           },
           {
             "key": "AUTHORITY",
-            "value": "https://login.microsoftonline.com/$tenantId"
+            "value": "\"https://login.microsoftonline.com/\"+$tenantId"
           },
           {
             "key": "ISSUER",
