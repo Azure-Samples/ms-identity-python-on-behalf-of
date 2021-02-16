@@ -3,7 +3,9 @@ page_type: sample
 languages:
   - python
 products:
-  - azure-active-directory  
+  - azure-active-directory
+  - microsoft-identity-platform
+  - msal-python
 name: Enable your Python Flask API to call the Azure Management API on a user's behalf from your Python Django Web App with the Microsoft Identity Platform.
 urlFragment: ms-identity-python-on-behalf-of
 description: "This sample demonstrates a Python Django Web App calling a Python Flask Web API that is secured using Azure AD"
@@ -26,12 +28,13 @@ description: "This sample demonstrates a Python Django Web App calling a Python 
 
 ## Overview
 
-This sample demonstrates a Python Django Web App calling a Python Flask Web API that is secured using Azure AD.
+This sample demonstrates a Python Django Web App calling a Python Flask Web API that is secured using Azure AD using the [Microsoft Authentication Library \(MSAL\) for Python](https://github.com/AzureAD/microsoft-authentication-library-for-python).
 
 ## Scenario
 
-1. The client Python Django Web App uses the Microsoft Authentication Library (MSAL) to sign-in and obtain a JWT Access Token from **Azure AD**.
-2. The access token is used as a bearer token to authorize the user to call the Python Flask Web API protected **Azure AD**.
+1. The client Python Django Web App uses the Microsoft Authentication Library (MSAL) to sign-in and obtain an [Access Token](https://docs.microsoft.com/azure/active-directory/develop/access-tokens) from **Azure AD**.
+2. The access token is used as a bearer token to authorize the user to call the Python Flask Web API protected by **Azure AD**.
+3. The Python Flask Web API then receives a token for **Azure Resource Management** API using the [On-Behalf-Of](https://docs.microsoft.coms/azure/active-directory/develop/v2-oauth2-on-behalf-of-flow) flow.
 
 ![Overview](./ReadmeFiles/topology.png)
 
@@ -40,6 +43,8 @@ This sample demonstrates a Python Django Web App calling a Python Flask Web API 
 | File/folder       | Description                                |
 |-------------------|--------------------------------------------|
 | `AppCreationScripts/`| Scripts to automatically configure Azure AD app registrations.|
+| `DjangoUI/`| The web app that signs the user in|
+| `FlaskAPI/`| The protected resource API that performs the On-Behalf-Of flow.|
 | `CHANGELOG.md`    | List of changes to the sample.             |
 | `CONTRIBUTING.md` | Guidelines for contributing to the sample. |
 | `LICENSE`         | The license for the sample.                |
@@ -71,11 +76,11 @@ or download and extract the repository .zip file.
 ### Step 2: Install project dependencies
 
 1. Navigate to the folder where you cloned this project
-1. If using VS Code, open each sub-folder, 'DjangoUI' and 'FlaskAPI', in seperate instances 
-1. Activate your Python 3 virtual environment (either directly in the [command line](https://docs.python.org/3/tutorial/venv.html#creating-virtual-environments) or [VS Code](https://code.visualstudio.com/docs/languages/python))
-1. You will need to install dependencies using pip
+2. If using VS Code, open each project sub-folder (`DjangoUI` and `FlaskAPI`) in separate VS Code instances.
+3. Activate your Python 3 virtual environment (either directly in the [command line](https://docs.python.org/3/tutorial/venv.html#creating-virtual-environments) or [VS Code](https://code.visualstudio.com/docs/languages/python))
+4. You will need to install dependencies using pip
    1. The below shell commands must be executed in both applications as they both have separate requirements.txt files  
-   1. There is also Pipfile included in both applications if you prefer to use [pipenv](https://pypi.org/project/pipenv/) instead
+   2. There is also Pipfile included in both applications if you prefer to use [pipenv](https://pypi.org/project/pipenv/) instead
 
 In the 'FlaskAPI' sub-folder, use the following command:
 
@@ -184,12 +189,11 @@ Open the project in your IDE (like Visual Studio or Visual Studio Code) to confi
 
 > In the steps below, "ClientID" is the same as "Application ID" or "AppId".
 
-1. In the 'FlaskAPI' sub-folder, copy the file named `production.env` and rename it to `development.env`.
-1. Open the `FlaskAPI\development.env` file.
-1. Find the key `CLIENT_ID` and replace the existing value with the application ID (clientId) of `Python Flask Web API` app copied from the Azure portal.
-1. Find the key `CLIENT_SECRET` and replace the existing value with the key you saved during the creation of `Python Flask Web API` copied from the Azure portal.
-1. Find the key `AUTHORITY` and replace the existing value with https://login.microsoftonline.com/ReplaceWithTenantID.
-1. Find the key `ISSUER` and replace the existing value with https://login.microsoftonline.com/ReplaceWithTenantID/v2.0.
+1. In the 'FlaskAPI' sub-folder, open the `FlaskAPI\development.env` file.
+2. Find the key `CLIENT_ID` and replace the existing value with the application ID (clientId) of `Python Flask Web API` app copied from the Azure portal.
+3. Find the key `CLIENT_SECRET` and replace the existing value with the key you saved during the creation of `Python Flask Web API` copied from the Azure portal.
+4. Find the key `AUTHORITY` and replace the `ReplaceWithTenantID` portion with the tenant ID value that you obtained from the portal.
+5. Find the key `ISSUER` and replace the `ReplaceWithTenantID` portion with the tenant ID value that you obtained from the portal.
 
 ### Register the client app (Python Django Web App)
 
@@ -229,14 +233,13 @@ Open the project in your IDE (like Visual Studio or Visual Studio Code) to confi
 
 > In the steps below, "ClientID" is the same as "Application ID" or "AppId".
 
-1. In the 'DjangoUI' sub-folder, copy the file named `production.env` and rename it to `development.env`.
-1. Open the `DjangoUI\development.env` file.
-1. Find the key `CLIENT_ID` and replace the existing value with the application ID (clientId) of `Python Django Web App` app copied from the Azure portal.
-1. Find the key `CLIENT_SECRET` and replace the existing value with the key you saved during the creation of `Python Django Web App` copied from the Azure portal.
-1. Find the key `DJANGO_SECRET_KEY` and replace the existing value with Secret Key Generated By Python Django Framework.
-1. Find the key `AUTHORITY` and replace the existing value with https://login.microsoftonline.com/ReplaceWithTenantID.
-1. Find the key `SCOPE` and replace the existing value with api://flaskapi/.default.
-1. Find the key `API_SCOPE` and replace the existing value with api://flaskapi/Subscriptions.Read.
+1. In the 'DjangoUI' sub-folder, open the `DjangoUI\development.env` file.
+2. Find the key `CLIENT_ID` and replace the existing value with the application ID (clientId) of `Python Django Web App` app copied from the Azure portal.
+3. Find the key `CLIENT_SECRET` and replace the existing value with the key you saved during the creation of `Python Django Web App` copied from the Azure portal.
+4. Find the key `DJANGO_SECRET_KEY` and replace the existing value with a Secret Key.
+5. Find the key `AUTHORITY` and replace the `ReplaceWithTenantID` portion with the tenant Id value that you obtained from the portal.
+6. Find the key `SCOPE` and replace the `Flask_API_Client_ID` portion of the existing value with with the client ID of the Flask app that you had copied from that portal in the previous section.
+7. Find the key `API_SCOPE` and replace the `Flask_API_Client_ID` portion of the existing value with with the client ID of the Flask app that you had copied from that portal in the previous section.
 
 #### Configure Known Client Applications for service (Python Flask Web API)
 
@@ -336,7 +339,7 @@ Navigate to [http://localhost:8000](http://localhost:8000) in your browser (**Do
 
 ## We'd love your feedback!
 
-Were we successful in addressing your learning objective? Consider taking a moment to [share your experience with us](Enter_Survey_Form_Link).
+Were we successful in addressing your learning objective? Consider taking a moment to [share your experience with us](https://forms.office.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR0TE6SUcVQZKq_Wiw2LQUqdUOUdIUExaSEk2TUFUQTNJSEJaMEpWQzZVQS4u).
 
 ## About the code
 

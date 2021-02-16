@@ -9,7 +9,7 @@
             "name": "Python: Django",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}\\manage.py",
+            "program": "${workspaceFolder}/manage.py",
             "env": {
                 "ENVIRONMENT":"development"
             },
@@ -23,7 +23,7 @@
             "name": "Python: Django: Run Migrations",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}\\manage.py",
+            "program": "${workspaceFolder}/manage.py",
             "env": {
                 "ENVIRONMENT":"development"
             },
