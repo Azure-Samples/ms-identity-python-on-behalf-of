@@ -85,14 +85,14 @@ class CallbackView(View):
     get(self, request)
         Uses the MSAL library to generate and store an access token for the user signing in. This access token will be created from the auth code passed
         into the request's query string, under the code parameter, and stored in the user's session. 
-        This method will then complete the authentication process, using Django's authenticatio middleware, and redirect the user to the home page.
+        This method will then complete the authentication process, using Django's authentication middleware, and redirect the user to the home page.
 
     """
 
     def get(self, request):
 
         if "error" in request.GET: 
-            return HttpResponse("An Error Occured:" + request.GET.get("error") + " " +  request.GET.get("error_description"), status=403)
+            return HttpResponse("An Error Occurred:" + request.GET.get("error") + " " +  request.GET.get("error_description"), status=403)
 
         try:
             #using the acquire_token_by_auth_code_flow method ensures PKCE protection is verified
@@ -104,12 +104,12 @@ class CallbackView(View):
             )
         except ValueError as exc:
             #only occurs when client data, either auth_code_response or SCOPE in this case, is missing or malformed
-            return HttpResponse("An Error Occured: " + str(exc), status=404)
+            return HttpResponse("An Error Occurred: " + str(exc), status=404)
 
         
 
         if "error" in token_response:
-            return HttpResponse("An Error Occured:" + token_response.get("error") + " " +  token_response.get("error_description"), status=404)
+            return HttpResponse("An Error Occurred:" + token_response.get("error") + " " +  token_response.get("error_description"), status=404)
 
         #sets the user_name value for this session, which will be used to determine if a user has been fully authenticated or not
         #when managing user sign in via sessions, ensure to set the SESSION_COOKIE_AGE setting to a low number of seconds

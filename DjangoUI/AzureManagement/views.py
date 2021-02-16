@@ -26,9 +26,8 @@ class SubscriptionsView(View):
         )
 
         if "error" in token_response:
-            return HttpResponse("An Error Occured:" + token_response.get("error") + " " +  token_response.get("error_description"), status=404)
+            return HttpResponse("An Error Occurred:" + token_response.get("error") + " " +  token_response.get("error_description"), status=404)
 
         rg_response = RequestsHelper.get_backend_api_session(token_response).get(os.environ.get("FLASK_BACKEND_URL")).json()
         rg_response_converted = json.dumps(rg_response)
-
-        return HttpResponse(rg_response_converted)
+        return HttpResponse(f"Upstream API Called Successfully. Return value is:\n\n{rg_response_converted}")
