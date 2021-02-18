@@ -69,7 +69,7 @@ def requires_jwt_authorization(f):
                     token,
                     rsa_key,
                     algorithms=["RS256"],
-                    audience=os.environ.get("FLASK_API_AUDIENCE"),
+                    audience=os.environ.get("CLIENT_ID"),
                     issuer=os.environ.get("ISSUER")
                 )
             except jwt.ExpiredSignatureError as jwt_expired_exc:
