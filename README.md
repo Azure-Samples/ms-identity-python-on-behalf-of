@@ -189,7 +189,7 @@ Open the project in your IDE (like Visual Studio or Visual Studio Code) to confi
 
 > In the steps below, "ClientID" is the same as "Application ID" or "AppId".
 
-1. In the 'FlaskAPI' sub-folder, open the `FlaskAPI\development.env` file.
+1. In the 'FlaskAPI' sub-folder, open the `FlaskAPI\production.env` file and make a copy in the same directory called `development.env`. In this new file:
 2. Find the key `CLIENT_ID` and replace the existing value with the application ID (clientId) of `Python Flask Web API` app copied from the Azure portal.
 3. Find the key `CLIENT_SECRET` and replace the existing value with the key you saved during the creation of `Python Flask Web API` copied from the Azure portal.
 4. Find the key `AUTHORITY` and replace the `ReplaceWithTenantID` portion with the tenant ID value that you obtained from the portal.
@@ -233,7 +233,7 @@ Open the project in your IDE (like Visual Studio or Visual Studio Code) to confi
 
 > In the steps below, "ClientID" is the same as "Application ID" or "AppId".
 
-1. In the 'DjangoUI' sub-folder, open the `DjangoUI\development.env` file.
+1. In the 'DjangoUI' sub-folder, open the `DjangoUI\production.env` file and make a copy in the same directory called `development.env`. In this new file:
 2. Find the key `CLIENT_ID` and replace the existing value with the application ID (clientId) of `Python Django Web App` app copied from the Azure portal.
 3. Find the key `CLIENT_SECRET` and replace the existing value with the key you saved during the creation of `Python Django Web App` copied from the Azure portal.
 4. Find the key `DJANGO_SECRET_KEY` and replace the existing value with a Secret Key.
