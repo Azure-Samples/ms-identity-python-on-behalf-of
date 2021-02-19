@@ -262,12 +262,12 @@ Function ConfigureApplications
 
         if ($scope -ne $null) 
         {
-            $scope.Value = "Subscriptions.Read"
+            $scope.Value = "access_as_user"
         }
         else 
         {
             # Add scope
-            $scope = CreateScope -value "Subscriptions.Read"  `
+            $scope = CreateScope -value "access_as_user"  `
                 -userConsentDisplayName "Access Python Flask Web API"  `
                 -userConsentDescription "Allow the application to access Python Flask Web API on your behalf."  `
                 -adminConsentDisplayName "Access Python Flask Web API"  `
@@ -340,7 +340,7 @@ Function ConfigureApplications
    # Add Required Resources Access (from 'client' to 'service')
    Write-Host "Getting access from 'client' to 'service'"
    $requiredPermissions = GetRequiredPermissions -applicationDisplayName "Python Flask Web API" `
-                                                -requiredDelegatedPermissions "Subscriptions.Read" `
+                                                -requiredDelegatedPermissions "access_as_user" `
 
    $requiredResourcesAccess.Add($requiredPermissions)
 
