@@ -38,7 +38,7 @@
         "RequiredResourcesAccess": [
           {
             "Resource": "service",
-            "DelegatedPermissions": [ "Subscriptions.Read" ]
+            "DelegatedPermissions": [ "access_as_user" ]
           },
           {
             "Resource": "Microsoft Graph",
