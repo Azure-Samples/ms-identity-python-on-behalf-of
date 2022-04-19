@@ -66,7 +66,7 @@ This sample demonstrates a Python Django Web App calling a Python Flask Web API 
 From your shell or command line:
 
 ```console
-    git clone https://github.com/Azure-Samples/https://github.com/Azure-Samples/ms-identity-python-on-behalf-of.git
+    git clone https://github.com/Azure-Samples/ms-identity-python-on-behalf-of.git
 ```
 
 or download and extract the repository .zip file.
