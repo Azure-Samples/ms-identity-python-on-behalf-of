@@ -69,7 +69,10 @@ def requires_jwt_authorization(f):
                     token,
                     rsa_key,
                     algorithms=["RS256"],
+                    # You might have to fix this, compare the audience settings and set this audience appropriately
+                    # audience=f"api://{os.environ.get('CLIENT_ID')}",
                     audience=os.environ.get("CLIENT_ID"),
+                    
                     issuer=os.environ.get("ISSUER")
                 )
             except jwt.ExpiredSignatureError as jwt_expired_exc:
