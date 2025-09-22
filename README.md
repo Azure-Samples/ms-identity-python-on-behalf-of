@@ -10,7 +10,9 @@ name: Enable your Python Flask API to call the Azure Management API on a user's 
 urlFragment: ms-identity-python-on-behalf-of
 description: "This sample demonstrates a Python Django Web App calling a Python Flask Web API that is secured using Azure AD"
 ---
+# Apr 3, 2025 This repository and demo are being updated due to the use of old dependencies in the Python libraries.
 # Enable your Python Flask API to call the Azure Management API on a user's behalf from your Python Django Web App with the Microsoft Identity Platform
+
 
  1. [Overview](#overview)
  1. [Scenario](#scenario)
